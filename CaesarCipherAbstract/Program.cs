@@ -10,13 +10,16 @@ namespace CaesarCipherAbstract
     {
         static void Main(string[] args)
         {
-            CaesarCipher caeserCipher = new CaesarCipher("abcdefghijklmnopqrstuvwxyz ");
-            caeserCipher.SetOffset();
-            string text = "my name is may";
-            Console.WriteLine("Original text: {0}", text);
-            string ciphered = caeserCipher.Cypher(text);
-            Console.WriteLine("Ciphered: {0}", ciphered);
-            Console.WriteLine("Deciphered: {0}", caeserCipher.Decipher(ciphered));
+            string alphaString = "abcdefghijklmnopqrstuvwxyz ";
+            char[] alphaArray = alphaString.ToCharArray();
+            DictionaryBasedAlphabet dictionaryAlpha = new DictionaryBasedAlphabet(alphaArray);
+            //CaesarCipher caeserCipher = new CaesarCipher("abcdefghijklmnopqrstuvwxyz ");
+            //caeserCipher.SetOffset();
+            //string text = "my name is may";
+            //Console.WriteLine("Original text: {0}", text);
+            //string ciphered = caeserCipher.Cypher(text);
+            //Console.WriteLine("Ciphered: {0}", ciphered);
+            //Console.WriteLine("Deciphered: {0}", caeserCipher.Decipher(ciphered));
         }
     }
 }
