@@ -32,9 +32,15 @@ namespace CaesarCipherAbstract
         {
             //Create dictionary of alphabet (key) with its offset alphabet (value)
 
-            for(int i = 0; i < Alphabet.Length; i++)
-            {   
-                int offsetIndex = (i + offset) % Alphabet.Length;
+            for (int i = 0; i < Alphabet.Length; i++)
+            {
+                int offsetIndex;
+
+                if (i + offset < 0)
+                    offsetIndex = Alphabet.Length + i + offset;
+                else
+                    offsetIndex = (i + offset) % Alphabet.Length;
+
                 charMap.Add(Alphabet[i], Alphabet[offsetIndex]);
             }
         }
