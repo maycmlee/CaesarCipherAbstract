@@ -10,95 +10,33 @@ namespace CaesarCipherAbstract
     {
 
         #region Properties
-        public string alphabet;
+        public AAlphabet aAlphabet;
         public int offset;
         #endregion
 
         #region Constructor
-        public CaesarCipher(string alphabet)
+        public CaesarCipher(AAlphabet aAlphabet)
         {
-            this.alphabet = alphabet;
+            this.aAlphabet = aAlphabet;
         }
         #endregion
 
         #region Methods
-        // Generates random number for offset
-        public void SetOffset()
+        public string Cipher(string text, int offset)
         {
-            Random rand = new Random();
-            offset = rand.Next(0, 10);
-            Console.WriteLine(offset);
-        }
+            aAlphabet.Transpose(offset);
+            string textTransformed = "";
 
-        // Loops through a string of characters to get the offset letter.
-        public string Cypher(string text)
-        {
-            string ciphered = "";
+            //Go through text to transpose
             for (int i = 0; i < text.Length; i++)
             {
-                ciphered += FindOffsetLetterCipher(text[i]);
-            }
-            return ciphered;
-        }
-
-        // Loops through a string of characters and finds the offset letter.
-        public string Decipher(string text)
-        {
-            string decipher = "";
-            for (int i = 0; i < text.Length; i++)
-            {
-                decipher += DecipherFindOffsetLetter(text[i]);
+                textTransformed += aAlphabet.GetTransposedChar(text[i]);
             }
 
-            return decipher;
+            return textTransformed;
         }
         #endregion
-
-        #region Helper Methods
-        /// <summary>
-        /// Finds letter with offset to cipher text.
-        /// </summary>
-        /// <param name="letter">Letter from string to be ciphered</param>
-        /// <returns></returns>
-        public char FindOffsetLetterCipher(char letter)
-        {
-            char newLetter = ' ';
-            for (int i = 0; i < alphabet.Length; i++)
-            {
-                if (alphabet[i] == letter)
-                {
-                    newLetter = alphabet[(i + offset) % alphabet.Length];
-                }
-            }
-            return newLetter;
-        }
-
-        /// <summary>
-        /// Finds letter that was offsetted in cipher to decipher text.
-        /// </summary>
-        /// <param name="letter">Letter from ciphered string</param>
-        /// <returns></returns>
-        public char DecipherFindOffsetLetter(char letter)
-        {
-            char newLetter = ' ';
-            for (int i = 0; i < alphabet.Length; i++)
-            {
-                if (alphabet[i] == letter)
-                {
-                    // Checks case where offsetted letter is at the end of the alphabet
-                    if ((i - offset) < 0)
-                    {
-                        newLetter = alphabet[alphabet.Length + i - offset];
-                    }
-                    else
-                    {
-                        newLetter = alphabet[(i - offset)];
-                    }
-                }
-            }
-            return newLetter;
-            #endregion
-        }
     }
 }
+
 
