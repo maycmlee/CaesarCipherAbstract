@@ -8,6 +8,11 @@ namespace CaesarCipherAbstract
 {
     class CaesarCipher
     {
+        /// <summary>
+        /// This is an abstract class based on AAlphabet.
+        /// Constructor takes in an alphabet and ciphers
+        /// a string based on the offset.
+        /// </summary>
 
         #region Properties
         public AAlphabet aAlphabet;
@@ -22,6 +27,13 @@ namespace CaesarCipherAbstract
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Ciphers a string.
+        /// </summary>
+        /// <param name="text">String to be ciphered</param>
+        /// <param name="offset">The offset for each of the characters
+        /// in the string</param>
+        /// <returns></returns>
         public string Cipher(string text, int offset)
         {
             aAlphabet.Transpose(offset);
